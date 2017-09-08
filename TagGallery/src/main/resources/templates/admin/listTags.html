@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="/static/css/style.css" th:href="@{css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="well center">
+    <form role="form" id="form-buscar" th:action="@{/admin/searchTag}" method="post"
+          style="margin-top: 50px; margin-bottom: 50px; margin-left: auto; margin-right: auto">
+        <div class="form-group center">
+            <div class="input-group center-block">
+                <input id="1" class="form-control" type="text" name="tags" placeholder="Search for tag..."
+                       required="required"/>
+                <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">
+                                Search
+                            </button>
+                </span>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="whiteText">#</th>
+            <th class="whiteText">Tag</th>
+            <th class="whiteText">Images Count</th>
+            <th class="whiteText">Delete Tag</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="tag : ${tags}">
+            <tr>
+                <td style="color: whitesmoke" th:text="${tag.id}"></td>
+                <td>
+                    <a th:href="@{/list/{id}(id=${tag.id})}" th:text="${tag.tagName}"
+                       style="color: whitesmoke">
+                    </a>
+                </td>
+                <td>
+                    <span class="whiteText" th:text="${#lists.size(tag.images)}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/admin/deleteTag/{id}(id=${tag.id})}">
+                        <span class="glyphicon glyphicon-remove whiteText"></span>
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

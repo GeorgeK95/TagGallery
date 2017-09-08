@@ -1,0 +1,37 @@
+<main xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container body-content">
+        <div class="row text">
+            <div class="col-md-12">
+                <article>
+                    <p style="color: whitesmoke" th:text="${comment.content}"></p>
+
+                    <span th:text="${#dates.format(comment.postDate, 'dd-MM-yyyy HH:mm')}"
+                          class="badge"></span>
+                    <footer>
+                        <div class="pull-right">
+                            <th:block sec:authorize="isAuthenticated()"
+                                      th:if="${user.isCommentAuthor(comment)}">
+
+                                <a th:href="@{/comment/edit/{id}(id=${comment.id})}"
+                                   class="btn btn-success btn-xs">
+                                    <span><strong>Edit</strong></span>
+                                </a>
+                            </th:block>
+
+                            <th:block sec:authorize="isAuthenticated()"
+                                      th:if="${user.isAdmin() OR user.isCommentAuthor(comment) OR user.isImageAuthor(comment.imageHolder)}">
+                                <a th:href="@{/comment/delete/{id}(id=${comment.id})}"
+                                   class="btn btn-danger btn-xs">
+                                    <span><strong>Delete</strong></span>
+                                </a>
+                            </th:block>
+
+                            <a class="btn btn-default btn-xs"
+                               th:href="@{/image/{id} (id=${comment.imageHolder.id})}">Back &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+</main>

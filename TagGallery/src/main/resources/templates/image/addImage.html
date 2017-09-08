@@ -1,0 +1,43 @@
+<main xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" th:action="@{/album/addImage/{id}}" method="POST"
+                  enctype="multipart/form-data">
+                <fieldset>
+                    <legend class="whiteText">Add Image</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="album_image">*Choose a Picture</label>
+                        <div class="col-sm-4 ">
+                            <input type="file" class="form-control" id="album_image" accept="image/*" name="picture"
+                                   required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="tags">*Tags</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="tags" placeholder="#tag#tag#tag"
+                                   name="tags" required="required" /><!--maxlength="36"-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="album_dropdown_menu"></label>
+                        <div class="col-sm-4 ">
+                            <select class="form-control" id="album_dropdown_menu" name="albumId">
+                                <option th:each="album : ${albums}" th:value="${album.id}" th:text="${album.title}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" th:href="@{/}">Cancel</a>
+                            <input type="submit" class="btn btn-success" value="Add Picture"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,63 @@
+<main xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container body-container">
+        <div class="well">
+            <div class="col-sm-3">
+                <img th:src="${user.profilePicture}" class="img-thumbnail"/>
+            </div>
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_name">Full Name</label>
+                        <div class="col-sm-4" style="margin-top: 10px; color:whitesmoke">
+                            <div th:text="${user.fullName}" id="user_name"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_email">Email</label>
+                        <div class="col-sm-4" style="margin-top: 10px; color:whitesmoke">
+                            <div th:text="${user.email}" id="user_email"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_phone">Phone Number</label>
+                        <div class="col-sm-4" style="margin-top: 10px; color:whitesmoke">
+                            <div th:text="${user.phone}" id="user_phone"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_town">Town</label>
+                        <div class="col-sm-4" style="margin-top: 10px; color:whitesmoke">
+                            <div th:text="${user.town}" id="user_town"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_country">Country</label>
+                        <div class="col-sm-4" style="margin-top: 10px; color:whitesmoke">
+                            <div th:text="${user.country}" id="user_country"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_information">About</label>
+                        <div class="col-sm-4" style="margin-top: 10px; color:whitesmoke">
+                            <div th:text="${user.information}" id="user_information"></div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <footer style="margin-top: 15px">
+            <div class="pull-right">
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="btn btn-danger" th:href="@{/admin/deleteUser/{id} (id=${user.id})}">Delete User</a>
+                </th:block>
+                <a class="btn btn-success" th:href="@{/albums/{id} (id=${user.id})}">View User Albums</a>
+                <th:block sec:authorize="isAuthenticated()"
+                          th:if="${user.isAdmin() OR user.isLoggedUserAuthorOfAlbum(user)}">
+                    <a class="btn btn-default" th:href="@{/profile/info/{id}(id = ${user.id})}">Edit Information</a>
+                    <a class="btn btn-warning" th:href="@{/profile/edit/{id} (id=${user.id})}">Edit Profile</a>
+                </th:block>
+            </div>
+        </footer>
+
+    </div>
+</main>

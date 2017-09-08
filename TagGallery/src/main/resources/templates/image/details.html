@@ -1,0 +1,86 @@
+<main xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container body-content">
+        <div class="row">
+            <aritcle>
+                <img th:src="${image.bigImagePath}" class="img-responsive center-block thumbnail"
+                     style="margin-top: 10px"/>
+            </aritcle>
+        </div>
+        <!--tags-->
+        <div class="row center">
+            <block th:each="tag : ${tags}">
+                <span style="color: whitesmoke">#<span th:text="${tag.tagName}" style="color: whitesmoke"></span></span>
+            </block>
+        </div>
+        <!--  <footer>
+              <div style="margin-top: 30px" class="pull-right">
+                  <a class="btn btn-default btn-xs" th:href="@{/album/{id} (id=${image.albumHolder.id})}">Back &raquo;</a>
+              </div>
+          </footer>-->
+        <div class="row">
+            <div class="col-md-12">
+                <span style="color: whitesmoke; font-size: 28px">Author:
+                    <a th:href="@{/profile/{id}(id=${image.albumHolder.author.id})}">
+                        <span
+                                style="color: whitesmoke; font-size: 28px"
+                                th:text="${image.albumHolder.author.fullName}"></span>
+                    </a>
+                </span>
+                <div class="page-header">
+                    <h1>
+                        Comments
+                    </h1>
+                </div>
+                <div class="comments-list">
+                    <block>
+                        <div class="media">
+                            <a th:href="@{/postComment/{id}(id=${image.id})}" class="btn btn-primary btn-sm btn-block"
+                               role="button"><span
+                                    class="glyphicon glyphicon-refresh" style="color: #00ccdb"></span>Add Comment</a>
+                        </div>
+                    </block>
+
+                    <block th:each="comment : ${comments}">
+                        <div class="media">
+                            <p class="pull-right">
+                                <small style="color: whitesmoke"
+                                       th:text="${#dates.format(comment.postDate, 'dd-MM-yyyy HH:mm')}">
+                                </small>
+                                <a th:href="@{/comment/options/{id}(id=${comment.id})}"
+                                   class="btn btn-primary a-btn-slide-text btn-xs">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span><strong>More</strong></span>
+                                </a>
+                            </p>
+                            <img th:src="${comment.author.profilePictureSmall}"/>
+                            <div class="media-body">
+
+                                <h4 th:class="media-heading" style="color: whitesmoke"
+                                    th:text="${comment.author.fullName}"></h4>
+                                <span style="color: whitesmoke" th:text="${comment.shortContent()}"></span>
+                                <p>
+                                    <small style="color:whitesmoke"><a
+                                            th:href="@{/image/{picId}/likeComment/{comId}(comId=${comment.id}, picId=${image.id})}">Like</a>
+                                        Rating:
+                                        <span style="color:whitesmoke" th:text="${comment.votes}"></span>
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </block>
+                    <footer th:if="${#lists.size(comments) > 0}">
+                        <ul class="pager">
+                            <li th:if="${pageNum > 1}"><a
+                                    th:href="@{/image/{picId}/page/{pageNum}(picId = ${image.id}, pageNum = ${pageNum} - 1)}">Prev</a>
+                            </li>
+                            <li th:if="${!pageNum.equals(maxPage)}">
+                                <a th:href="@{/image/{picId}/page/{pageNum}(picId = ${image.id}, pageNum = ${pageNum} + 1)}">Next</a>
+                            </li>
+                        </ul>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

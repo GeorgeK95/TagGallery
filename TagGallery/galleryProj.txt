@@ -1,0 +1,32 @@
+kato vlezne nqkoi si potrebited, da vijda kategoriite.
+Kato cukne na nakoq kategoriq, da mu se pokazvat snimki, koito imat takava kategoriq.
+Defakto kategoriqta tag li e za fb ?!? -Mai da
+
+ideq1: Usera si ima "myprofile", v tozi page si pravi vsi4ko neobhodimo, 6te ima nqkakaf gotin buton, koito shte go vodi
+kum albumite mu -> ottam v snimkite mu, shte mu se poqvqva srednata ocenka ot vsi4ki snimki i t.n.
+Kato si pravi album, nqma da e zaduljen da slaga kategorii na snimkite, no posle shte moje da si adva. Shte zbira kategoriq
+ot zadadenite ot admina. Taka user kato vlezne, cuka si kategoriq i v RANDOM red mu se listvat snimiite. Ot tuk sledva,
+che 6te imame i paging./ili puk ne, tova ne e purvostepenno shte se re6i v posledstvie/. Osnovnoto v toq maluk proekt
+e da imame razlichen cutting za vsqka snimka -> profilnata v edin format, albumnata v drug, pic ot albuma v treti.
+Snimkata shte ima rating 1/10/deseti4ni 4isla/, albuma shte ima rating na baza na snimkite si i usera shte ima rating
+na baza na albumite si. Kogato edin user vlezne v prof.stranica na drug, shte mu se listva imenata, snimkata ... 
+ + srednata ocenka na ka4vanoto sudarjanie, predpochitenite ot nego kategorii, View Albums, .. Send PM.
+PM sistemata shte e prosta, suobshteniq i tolkoz. Nakraq shte se napravi sort by: name, rating, ...
+Snimkite shte imat komentari. Komentarite shte imat likes samo s 1 nagore ili dislike s 1 nadoly. Shte se sortvat po
+rating.
+
+User: id, email, password,||| fullname, town, country, information, profile_image, phone, message_id
+Image: id, path, rating, album_id, comment_id
+Album: id, name, images, rating, album_image_path, category_id
+Message: id, title, content, author_id
+Comment: id, content, rating (INT)
+Category: id, name, 
+
+pravq user
+pravq message
+-dali chata bachka
+pravq image
+pravq album
+-dali vruzkata bachka lesnoto dotuk
+
+

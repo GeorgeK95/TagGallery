@@ -1,0 +1,26 @@
+<main>
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" th:action="@{/postComment/{id}(id=${image.id})}" method="POST">
+                <fieldset>
+                    <legend>New Comment</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="content">Content</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" rows="6" id="content" name="content"
+                                      maxlength="400"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" th:href="@{/image/{id} (id=${image.id})}">Cancel</a>
+                            <input type="submit" class="btn btn-primary" value="Add"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>

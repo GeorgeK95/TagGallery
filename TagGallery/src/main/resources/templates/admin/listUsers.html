@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="/static/css/style.css" th:href="@{css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="well center">
+    <form role="form" id="form-buscar" th:action="@{/admin/searchUser}" method="post"
+          style="margin-top: 50px; margin-bottom: 50px; margin-left: auto; margin-right: auto">
+        <div class="form-group center">
+            <div class="input-group center-block">
+                <input id="1" class="form-control" type="text" name="email" placeholder="Search for user..."
+                       required="required"/>
+                <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">
+                                Search
+                            </button>
+                </span>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="color: whitesmoke">#</th>
+            <th style="color: whitesmoke">Email</th>
+            <th style="color: whitesmoke">FullName</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="user : ${users}">
+            <tr>
+                <td style="color: whitesmoke" th:text="${user.id}"></td>
+                <td>
+                    <a th:href="@{/profile/{id}(id=${user.id})}" th:text="${user.email}"
+                       style="color: white">
+                    </a>
+                </td>
+                <td style="color: whitesmoke" th:text="${user.fullName}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

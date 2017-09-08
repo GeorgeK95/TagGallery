@@ -1,0 +1,22 @@
+<main>
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" th:action="@{/admin/deleteTag/{id}(id=${tag.id})}" method="POST">
+                <fieldset>
+                    <div class="form-group">
+                        <p class="whiteText center">
+                            Are you sure you want to delete current tag with all his images indeed ?
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" th:href="@{/admin/tags}">Cancel</a>
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>

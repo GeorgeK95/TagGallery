@@ -1,0 +1,54 @@
+<main>
+    <div class="container body-content">
+        <div class="row">
+
+            <th:block sec:authorize="isAuthenticated()"
+                      th:if="${user.isLoggedUserAuthorOfAlbum(user)}">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a th:href="@{/newAlbum}">
+                            <img th:src="${albumAddImagePath}" alt="Lights"/>
+                            <div class="caption">
+                                <p align="center" style="color: whitesmoke">Create Album</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block th:each="album : ${albums}">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a th:href="@{/album/{id}(id=${album.id})}">
+                            <img th:src="${album.albumProfileImage}" alt="Lights"/>
+                            <!--AND hasRole('ROLE_ADMIN')-->
+                            <div sec:authorize="isAuthenticated()"
+                                 th:if="${album.title != 'Default Album' AND (user.isAuthor(album) OR user.isAdmin())}">
+                                <a th:href="@{/album/delete/{id}(id=${album.id})}">
+                                    <img th:src="${delete_album}" style="position: absolute; top: 21px; right: 15px"/>
+                                </a>
+                                <a th:href="@{/album/edit/{id}(id=${album.id})}">
+                                    <img th:src="${edit_album}" style="position: absolute; top: 0px; right: 15px"/>
+                                </a>
+                            </div>
+
+                            <div class="caption">
+                                <p align="center" class="author" style="color: whitesmoke" th:text="${album.title}"></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+        <footer th:if="${#lists.size(albums) > 0}">
+            <ul class="pager">
+                <li th:if="${pageNum > 1}"><a
+                        th:href="@{/albums/{userId}/page/{pageNum}(userId = ${user.id}, pageNum = ${pageNum} - 1)}">Prev</a>
+                </li>
+                <li th:if="${!pageNum.equals(maxPage)}">
+                    <a th:href="@{/albums/{userId}/page/{pageNum}(userId = ${user.id}, pageNum = ${pageNum} + 1)}">Next</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</main>

@@ -1,0 +1,67 @@
+<main>
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" th:action="@{/newAlbum}" method="POST" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Create Album</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="album_name">Album name</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="album_name" placeholder="Album Name"
+                                   name="title" required="required"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="tags">Tags</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="tags" placeholder="#tag#tag#tag"
+                                   name="tags"/><!--required="required"maxlength="36"-->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="image">*Album Profile Image</label>
+                        <div class="col-sm-4 ">
+                            <input type="file" name="picture" id="image" accept="image/*" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="image1">Image</label>
+                        <div class="col-sm-4 ">
+                            <input type="file" name="pictures" accept="image/*" id="image1"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="image2">Image</label>
+                        <div class="col-sm-4 ">
+                            <input type="file" name="pictures" accept="image/*" id="image2"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="image3">Image</label>
+                        <div class="col-sm-4 ">
+                            <input type="file" name="pictures" accept="image/*" id="image3"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="image4">Image</label>
+                        <div class="col-sm-4 ">
+                            <input type="file" name="pictures" accept="image/*" id="image4"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" th:href="@{/albums}">Cancel</a>
+                            <!--/{id}(id=${album.id})-->
+                            <input type="submit" class="btn btn-primary" value="Submit"/>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
